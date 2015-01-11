@@ -20,7 +20,7 @@ namespace StarterKit.Controllers
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(UserModel userModel)
+        public async Task<IHttpActionResult> Post(UserModel userModel)
         {
             if (!ModelState.IsValid)
             {

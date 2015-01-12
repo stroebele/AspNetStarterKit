@@ -8,6 +8,8 @@ using StarterKit.Auth;
 using Ninject;
 using System.Reflection;
 using StarterKit.App_Start;
+using Microsoft.Owin.StaticFiles;
+using Microsoft.Owin.FileSystems;
 
 namespace StarterKit
 {
@@ -22,6 +24,13 @@ namespace StarterKit
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             NinjectConfig.SetupNinjectMiddlewareAndWebApi(app, config);
             app.UseWebApi(config);
+
+
+            app.UseFileServer(new FileServerOptions()
+            {
+                RequestPath = new PathString(@"/"),
+                FileSystem = new PhysicalFileSystem(@".\www"),
+            });
         }
         
         public void ConfigureOAuth(IAppBuilder app)

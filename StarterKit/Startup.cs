@@ -5,6 +5,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using StarterKit.Auth;
+using Ninject;
+using System.Reflection;
 
 namespace StarterKit
 {
@@ -16,6 +18,7 @@ namespace StarterKit
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            NinjectConfig.SetupNinjectMiddlewareAndWebApi(app, config);
             app.UseWebApi(config);
         }
         
@@ -32,6 +35,7 @@ namespace StarterKit
             // Token Generation
             app.UseOAuthAuthorizationServer(oAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+           
 
         }
     }

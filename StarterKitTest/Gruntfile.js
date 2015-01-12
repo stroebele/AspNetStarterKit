@@ -5,10 +5,10 @@ module.exports = function (grunt) {
 
     var callbackFunc = function (err, response, body) {
         if (err) {
-            console.log(response);
-            console.log(err);
+            console.log("RESPONSE: " + response);
+            console.log("\n ERR: " + JSON.stringify(err, null, 4) + "\n");
         }
-        var pretty = JSON.stringify(body, null, 4);
+        var pretty = "BODY: " + JSON.stringify(body, null, 4);
         console.log(pretty);
     }
 
@@ -29,14 +29,16 @@ module.exports = function (grunt) {
                         "confirmPassword": "SuperPass"
                     },
                     method: "POST",
+                    ignoreErrors: true,
                 }
             },
-            get: {
+            getSample: {
                 options: {
-                    url: host + 'api/Account',
+                    url: host + 'api/Sample',
                     //headers: { Authorization: authToken },
                     callback: callbackFunc,
-                    json: true,
+                    ignoreErrors: true,
+                    //json: true,
                     //body:
                     //{
                     //    "userName": "Taiseer",

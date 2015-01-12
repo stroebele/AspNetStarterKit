@@ -10,13 +10,35 @@ namespace StarterKit.Controllers
     [RoutePrefix("api/Sample")]
     public class SampleController : ApiController
     {
-        [Authorize]
-        [Route("")]
+        ISample _sampleObj;
+        public SampleController(ISample sampleObj)
+        {
+            _sampleObj = sampleObj;
+        }
+        //public SampleController()
+        //{
+        //    _sampleObj = new SampleObj();
+        //}
+        [AllowAnonymous]
         public IHttpActionResult Get()
         {
-            return Ok("Here's some sample data");
+            return Ok(_sampleObj.GetData());
         }
  
+    }
+
+    public interface ISample
+    {
+        string GetData();
+    }
+
+    public class SampleObj: ISample
+    {
+
+        public string GetData()
+        {
+            return "Sample Obj reporting in";
+        }
     }
  
 }

@@ -25,8 +25,16 @@ namespace StarterKit.Controllers
             _logger.Debug("Hello world");
             return Ok(_sampleObj.GetData());
         }
+
+        [AllowAnonymous]
+        [Route("throw")]
+        public IHttpActionResult GetThrow()
+        {
+            throw new NotImplementedException("Ain't nobody got time for that");
+        }
  
     }
+
 
     public interface ISample
     {

@@ -7,6 +7,7 @@ using Owin;
 using StarterKit.Auth;
 using Ninject;
 using System.Reflection;
+using StarterKit.App_Start;
 
 namespace StarterKit
 {
@@ -16,6 +17,7 @@ namespace StarterKit
         {
             ConfigureOAuth(app);
             HttpConfiguration config = new HttpConfiguration();
+            config.Filters.Add(new UnhandledExceptionsLogger());
             WebApiConfig.Register(config);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             NinjectConfig.SetupNinjectMiddlewareAndWebApi(app, config);

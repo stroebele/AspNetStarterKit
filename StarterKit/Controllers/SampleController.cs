@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ninject.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,17 +12,17 @@ namespace StarterKit.Controllers
     public class SampleController : ApiController
     {
         ISample _sampleObj;
-        public SampleController(ISample sampleObj)
+        ILogger _logger; 
+        public SampleController(ISample sampleObj, ILogger logger)
         {
             _sampleObj = sampleObj;
+            _logger = logger;
+            
         }
-        //public SampleController()
-        //{
-        //    _sampleObj = new SampleObj();
-        //}
         [AllowAnonymous]
         public IHttpActionResult Get()
         {
+            _logger.Debug("Hello world");
             return Ok(_sampleObj.GetData());
         }
  

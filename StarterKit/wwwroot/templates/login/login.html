@@ -1,0 +1,26 @@
+﻿
+<form class="form-login" role="form" style="margin-top:4em;">
+    <!--<h2 class="form-login-heading">Login</h2>-->
+    <div class="row">
+        <div class="well" style="width:50%; margin-left:auto; margin-right: auto;">
+            <div style="background-image:url(images/LoginLogo.png); background-repeat:no-repeat; height:73px; width: 272px;"></div>
+            <div style="padding-top:1em; padding-left:3em; padding-right:3em;">
+                <input type="text" class="form-control rowSpace" placeholder="Username" data-ng-model="vm.loginData.userName" required autofocus>
+                <input type="password" class="form-control rowSpace" placeholder="Password" data-ng-model="vm.loginData.password" required>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button class=" btn btn-lg btn-info btn-block rowSpace" type="submit" data-ng-click="vm.login()">Login</button>
+                    </div>
+                </div>
+                <div class="" style="margin-right:1em; font-size:small;">
+
+                    <a class="icon-question2" ui-sref="register"> Register</a>
+
+                </div>
+                <!--<div data-ng-hide="message == ''" class="alert alert-danger">
+                    {{vm.message}}
+                </div>-->
+            </div>
+        </div>
+    </div>
+</form>

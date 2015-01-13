@@ -1,0 +1,36 @@
+﻿<form class="form-login" role="form">
+    <div class="row" style="padding-top:4em;">
+        <div class="well" style="width:50%; margin-left:auto; margin-right:auto;">
+            <div style="background-image:url(images/LoginLogo.png); background-repeat:no-repeat; height:73px; width: 272px;"></div>
+            <div style="padding-top:1em; padding-left:3em; padding-right:3em;">
+
+                <input type="text"
+                       class="form-control"
+                       placeholder="Username"
+                       data-ng-model="vm.registration.userName"
+                       autofocus
+                       style="margin-bottom:1em;"
+                       required>
+
+                <input type="password"
+                       class="form-control"
+                       placeholder="Password"
+                       data-ng-model="vm.registration.password"
+                       style="margin-bottom:1em;"
+                       required>
+
+                <input type="password"
+                       class="form-control"
+                       placeholder="Confirm Password"
+                       data-ng-model="vm.registration.confirmPassword"
+                       style="margin-bottom:1em;"
+                       required>
+                <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="vm.signUp()">Submit</button>
+            </div>
+            <div style="bottom:-33px; position: relative;" data-ng-hide="message == ''" data-ng-class="(vm.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                {{vm.message}}
+            </div>
+
+        </div>
+
+</form>

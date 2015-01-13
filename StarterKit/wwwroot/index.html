@@ -3,8 +3,10 @@
 <head>
     <title></title>
 </head>
-<body>
-    This is a test woot23
+<body ng-app="app">
+
+    <div ui-view="header"></div>
+    <div ui-view="body" class="container"></div>
 
     <!-- build:js js/lib.js -->
     <script src="js/lib.js"></script>

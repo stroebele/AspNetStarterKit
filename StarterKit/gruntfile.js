@@ -26,9 +26,11 @@ module.exports = function(grunt) {
     uglify: {
       options: {
           sourceMap: true,
+          mangle: false,
+          beautify: true,
       },
       app: {
-        src: 'wwwroot/js/app/*.js',
+        src: ['wwwroot/js/app/**/*.js', 'wwwroot/templates/**/*.js'],
         dest: 'www/js/app.min.js'
       }
     },
@@ -86,9 +88,9 @@ module.exports = function(grunt) {
             {
                 expand: true,
                 cwd: 'wwwroot',
-                src: '*.html',
+                src: ['./**/*.html', '!./bower_components/**'],
                 dest: "www/"
-            }
+            },
     },
     watch: {
       gruntfile: {

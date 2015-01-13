@@ -187,3 +187,6 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/StarterKit/wwwroot/bower_components
+/StarterKit/www
+/StarterKit/dist

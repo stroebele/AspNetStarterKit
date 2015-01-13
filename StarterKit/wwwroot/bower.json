@@ -1,0 +1,20 @@
+{
+  "name": "StarterKit",
+  "version": "0.0.0",
+  "homepage": "https://github.com/stroebele/AspNetStarterKit",
+  "authors": [
+    "Joshua <stroebele@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.8",
+    "angular-ui-router": "~0.2.13"
+  }
+}

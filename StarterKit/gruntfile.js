@@ -1,4 +1,5 @@
 /// <vs BeforeBuild='default' />
+/// <reference path="wwwroot/bower_components/angular-local-storage/dist/angular-local-storage.min.js" />
 /*global module:false*/
 module.exports = function(grunt) {
 
@@ -6,30 +7,53 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
     concat: {
       options: {
-        banner: '<%= banner %>',
-        stripBanners: true
+          separator: ';',
+          sourceMap: true
       },
-      dist: {
-        src: ['lib/<%= pkg.name %>.js'],
-        dest: 'dist/<%= pkg.name %>.js'
+      lib: {
+          sourceMap: true,
+          src: [
+                'wwwroot/bower_components/angular/angular.min.js',
+                'wwwroot/bower_components/angular-ui-router/release/angular-ui-router.min.js',
+                'wwwroot/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
+          ],
+          dest: 'www/js/lib.js'
       }
     },
     uglify: {
       options: {
-        banner: '<%= banner %>'
+          sourceMap: true,
       },
-      dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.min.js'
+      app: {
+        src: 'wwwroot/js/app/*.js',
+        dest: 'www/js/app.min.js'
       }
+    },
+    filerev: {
+        lib: { src: ['www/js/lib.js', 'www/js/app.min.js'] }
+    },
+    useminPrepare: {
+        html: 'wwwroot/index.html',
+        options: {
+            dest: 'www'
+        }
+    },
+    usemin: {
+        html: ['www/*.html'],
+        css: ['www/css/**/*.css'],
+        js: ['www/js/**/*.js'],
+        options: {
+            dirs: ['www'],
+            assetsDirs: ['www'],
+            patterns: {
+                js: [
+                    [/["']([^:"']+\.(?:png|gif|jpe?g))["']/img, 'Image replacement in js files']
+                ]
+            }
+        },
     },
     jshint: {
       options: {
@@ -89,9 +113,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
- 
+  grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-filerev');
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'copy', 'jshint', 'qunit', 'concat', 'uglify']);
+    //grunt.registerTask('default', ['clean', 'copy', 'concat:lib', 'filerev:lib', 'jshint', 'qunit', 'concat', 'uglify']);
+    grunt.registerTask('default', ['clean', 'copy', 'concat:lib', 'uglify', 'filerev:lib', 'usemin']);
 
 };

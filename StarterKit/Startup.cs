@@ -28,7 +28,7 @@ namespace StarterKit
 
             app.UseFileServer(new FileServerOptions()
             {
-                RequestPath = new PathString(@"/"),
+                RequestPath = PathString.Empty,
                 FileSystem = new PhysicalFileSystem(@".\www"),
             });
         }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using StarterKit.Auth;
+using Ninject.Extensions.Logging;
 
 namespace StarterKit.Controllers
 {
@@ -11,10 +12,11 @@ namespace StarterKit.Controllers
     public class AccountController : ApiController
     {
         private readonly AuthRepository _repo = null;
-
-        public AccountController()
+        ILogger _logger;
+        public AccountController(AuthRepository repo, ILogger logger)
         {
-            _repo = new AuthRepository();
+            _repo = repo;
+            _logger = logger;
         }
 
         // POST api/Account/Register
@@ -22,6 +24,7 @@ namespace StarterKit.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Post(UserModel userModel)
         {
+            _logger.Trace("Signing up user: {0}", userModel.UserName);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

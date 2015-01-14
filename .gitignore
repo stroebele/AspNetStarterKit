@@ -190,3 +190,5 @@ ModelManifest.xml
 /StarterKit/wwwroot/bower_components
 /StarterKit/www
 /StarterKit/dist
+/StarterKit/bower_components/bootstrap
+/StarterKit/bower_components/jquery

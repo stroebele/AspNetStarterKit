@@ -1,6 +1,4 @@
 /// <vs BeforeBuild='default' />
-/// <reference path="wwwroot/bower_components/angular-local-storage/dist/angular-local-storage.min.js" />
-/*global module:false*/
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -10,7 +8,7 @@ module.exports = function(grunt) {
     // Task configuration.
     concat: {
       options: {
-          separator: ';',
+          separator: grunt.util.linefeed + ';' + grunt.util.linefeed,
           sourceMap: true
       },
       lib: {
@@ -19,6 +17,9 @@ module.exports = function(grunt) {
                 'wwwroot/bower_components/angular/angular.min.js',
                 'wwwroot/bower_components/angular-ui-router/release/angular-ui-router.min.js',
                 'wwwroot/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
+                "wwwroot/bower_components/jquery/dist/jquery.min.js",
+                "wwwroot/bower_components/bootstrap/dist/js/bootstrap.min.js",
+
           ],
           dest: 'www/js/lib.js'
       }
@@ -91,6 +92,18 @@ module.exports = function(grunt) {
                 src: ['./**/*.html', '!./bower_components/**'],
                 dest: "www/"
             },
+        css:
+            {
+                expand: true,
+                flatten: true,
+                src: ['./wwwroot/bower_components/bootstrap/dist/css/bootstrap.min.css',
+                      './wwwroot/bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
+                      './wwwroot/bower_components/bootstrap/dist/css/bootstrap-theme.css.map',
+                      './wwwroot/bower_components/bootstrap/dist/css/bootstrap.css.map',
+                      './wwwroot/css/**/*.css'
+                    ],
+                dest: "www/css/"
+            }
     },
     watch: {
       gruntfile: {

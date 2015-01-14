@@ -9,33 +9,13 @@
 
 
     function route($stateProvider, $urlRouterProvider) {
-        //$urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/home');
 
         var bodyStates = [
-            {
-                name: 'login', body: {
-                    url: "/login",
-                    controller: "login",
-                    templateUrl: "login/login.html",
-                    controllerAs: 'vm'
-                }
-            },
-            {
-                name: 'home', body: {
-                    url: "/home",
-                    controller: "home",
-                    templateUrl: "home/home.html",
-                    controllerAs: 'vm'
-                }
-            },
-            {
-                name: "signup", body: {
-                    url: "/signup",
-                    controller: "signup",
-                    templateUrl: "signup/signup.html",
-                    controllerAs: 'vm'
-                }
-            },
+            {name: 'login'},
+            {name: 'home'},
+            {name: "signup"},
+            {name: "sample"},
         ];
 
         var header = {

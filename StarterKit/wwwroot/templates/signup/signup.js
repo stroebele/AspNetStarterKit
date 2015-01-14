@@ -5,13 +5,13 @@
         .module('app')
         .controller('signup', signup);
 
-    //signup.$inject = ['$location', '$timeout', 'authService'];
+    signup.$inject = ['$location', '$timeout', 'authService'];
 
-    //function signup($location, $timeout, authService) {
-    function signup() {
+    function signup($location, $timeout, authService) {
+    //function signup() {
         /* jshint validthis:true */
         var vm = this;
-        //vm.title = 'signup';
+        vm.title = 'signup';
         //vm.signUp = signUp;
 
         //activate();

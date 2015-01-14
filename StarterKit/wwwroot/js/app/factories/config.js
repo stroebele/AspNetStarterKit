@@ -7,7 +7,7 @@
 
 
     function config() {
-        var baseUrl = 'http://localhost:38643/';
+        var baseUrl = 'http://localhost:3000/';
         var service = {
             baseUrl: baseUrl
         };

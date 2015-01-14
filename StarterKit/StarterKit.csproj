@@ -173,8 +173,12 @@
     <Content Include="wwwroot\js\app\route.js" />
     <Content Include="wwwroot\templates\header\header.html" />
     <Content Include="wwwroot\templates\header\header.js" />
+    <Content Include="wwwroot\templates\home\home.html" />
+    <Content Include="wwwroot\templates\home\home.js" />
     <Content Include="wwwroot\templates\login\login.html" />
     <Content Include="wwwroot\templates\login\login.js" />
+    <Content Include="wwwroot\templates\sample\sample.html" />
+    <Content Include="wwwroot\templates\sample\sample.js" />
     <Content Include="wwwroot\templates\signup\signup.html" />
     <Content Include="wwwroot\templates\signup\signup.js" />
   </ItemGroup>
@@ -207,8 +211,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="wwwroot\templates\home\" />
-    <Folder Include="wwwroot\templates\sample\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

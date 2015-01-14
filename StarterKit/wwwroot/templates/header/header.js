@@ -10,31 +10,29 @@
         function header(auth, $state) {
         /* jshint validthis:true */
         var vm = this;
-        vm.name = 'header';
-        //vm.userName = 'Log In'
-        //vm.isAuth = false;
-        //vm.title = 'header';
-        //vm.isState = isState;
-        //vm.logOut = logOut;
+        vm.userName = 'Log In'
+        vm.isAuth = false;
+        vm.isSelectedMenuItem = isSelectedMenuItem;
+        vm.logOut = logOut;
 
-        //activate();
+        activate();
 
-        //function isState(checkStateName) {
-        //    return checkStateName == $state.current.name;
+        function isSelectedMenuItem(checkStateName) {
+            return checkStateName == $state.current.name;
 
-        //};
-        //function activate() {
-        //    if (auth.authentication.isAuth) {
+        };
+        function activate() {
+            if (auth.authentication.isAuth) {
 
-        //        vm.userName = auth.authentication.userName;
-        //        vm.isAuth = auth.authentication.isAuth;
-        //    }
-        //};
-        //function logOut() {
-        //    if (vm.isAuth === true) {
-        //        auth.logOut();
-        //        auth.isAuth = false;
-        //    }
-        //}
+                vm.userName = auth.authentication.userName;
+                vm.isAuth = auth.authentication.isAuth;
+            }
+        };
+        function logOut() {
+            if (vm.isAuth === true) {
+                auth.logOut();
+                auth.isAuth = false;
+            }
+        }
     }
 })();

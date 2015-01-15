@@ -189,10 +189,6 @@
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="App_Start\UnhandledExceptionsLogger.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Auth\AuthContext.cs" />
-    <Compile Include="Auth\AuthRepository.cs" />
-    <Compile Include="Auth\SimpleAuthorizationServerProvider.cs" />
-    <Compile Include="Auth\UserModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\SampleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -214,6 +210,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StarterKit.Auth\StarterKit.Auth.csproj">
+      <Project>{19795bd4-df5f-492b-84d1-268696390038}</Project>
+      <Name>StarterKit.Auth</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

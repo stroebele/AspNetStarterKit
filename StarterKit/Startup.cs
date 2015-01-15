@@ -24,13 +24,14 @@ namespace StarterKit
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             NinjectConfig.SetupNinjectMiddlewareAndWebApi(app, config);
             app.UseWebApi(config);
+            app.UseStaticFiles();
 
 
-            app.UseFileServer(new FileServerOptions()
-            {
-                RequestPath = PathString.Empty,
-                FileSystem = new PhysicalFileSystem(@".\www"),
-            });
+            //app.UseFileServer(new FileServerOptions()
+            //{
+            //    RequestPath = PathString.Empty,
+            //    FileSystem = new PhysicalFileSystem(@".\www"),
+            //});
         }
         
         public void ConfigureOAuth(IAppBuilder app)

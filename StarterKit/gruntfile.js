@@ -103,6 +103,13 @@ module.exports = function(grunt) {
                       './wwwroot/css/**/*.css'
                     ],
                 dest: "www/css/"
+            },
+        wwwToRoot:
+            {
+                cwd: 'www',
+                expand: true,
+                src: ['./**/*.*'],
+                dest: "."
             }
     },
     watch: {
@@ -116,7 +123,8 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-        www: ["www"]
+        www: ["www"],
+        rootWww: ['index.html', 'js/', 'css/', 'templates/']
     }
   });
 
@@ -133,6 +141,7 @@ module.exports = function(grunt) {
 
   // Default task.
     //grunt.registerTask('default', ['clean', 'copy', 'concat:lib', 'filerev:lib', 'jshint', 'qunit', 'concat', 'uglify']);
-    grunt.registerTask('default', ['clean', 'copy', 'concat:lib', 'uglify', 'filerev:lib', 'usemin']);
+  grunt.registerTask('default', ['clean', 'copy:html', 'copy:css', 'concat:lib', 'uglify', 'filerev:lib', 'usemin', 'copy:wwwToRoot']);
+  grunt.registerTask('cleanPrecheckin', ['clean:rootWww']);
 
 };

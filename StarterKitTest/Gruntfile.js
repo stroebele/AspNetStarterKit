@@ -19,7 +19,6 @@ module.exports = function (grunt) {
             register: {
                 options: {
                     url: host + 'api/account/Register',
-                    //headers: { Authorization: authToken },
                     callback: callbackFunc,
                     json: true,
                     body: 
@@ -35,17 +34,25 @@ module.exports = function (grunt) {
             getSample: {
                 options: {
                     url: host + 'api/Sample',
-                    //headers: { Authorization: authToken },
                     callback: callbackFunc,
                     ignoreErrors: true,
-                    //json: true,
-                    //body:
-                    //{
-                    //    "userName": "Taiseer",
-                    //    "password": "SuperPass",
-                    //    "confirmPassword": "SuperPass"
-                    //},
-                    //method: "POST",
+                }
+            },
+            getToken: {
+                options: {
+                    url: host + 'token',
+                    callback: function (err, response, body) {
+                        console.log(body);
+                    },
+                    form:
+                    {
+                        "userName": "joshua",
+                        "password": "password",
+                        "grant_type": "password",
+                        "client_id": "gruntJS",
+                    },
+                    method: "POST",
+                    ignoreErrors: true,
                 }
             },
 

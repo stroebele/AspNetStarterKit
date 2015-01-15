@@ -21,7 +21,7 @@ namespace StarterKit.Controllers
             
         }
         //[Authorize]
-       [Authorize(Roles="Trucker")]
+       [Authorize(Roles="Role")]
          public IHttpActionResult Get()
         {
             _logger.Debug("Hello world");
@@ -48,7 +48,7 @@ namespace StarterKit.Controllers
 
         public string GetData()
         {
-            return "Sample Obj reporting in";
+            return string.Format("Sample Obj reporting in @{0}", DateTime.Now);
         }
     }
  

@@ -11,7 +11,7 @@
         var vm = this;
         vm.title = 'This is the sample contorller';
 
-        ss.makeCall();
+        ss.makeCall().then(function (response) { vm.data = response.data });
     }
 
 })();

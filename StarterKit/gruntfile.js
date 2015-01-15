@@ -1,4 +1,5 @@
 /// <vs BeforeBuild='default' />
+
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -19,7 +20,7 @@ module.exports = function(grunt) {
                 'wwwroot/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
                 "wwwroot/bower_components/jquery/dist/jquery.min.js",
                 "wwwroot/bower_components/bootstrap/dist/js/bootstrap.min.js",
-
+                "wwwroot/bower_components/toastr/toastr.min.js",
           ],
           dest: 'www/js/lib.js'
       }
@@ -100,6 +101,8 @@ module.exports = function(grunt) {
                       './wwwroot/bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
                       './wwwroot/bower_components/bootstrap/dist/css/bootstrap-theme.css.map',
                       './wwwroot/bower_components/bootstrap/dist/css/bootstrap.css.map',
+                      './wwwroot/bower_components/toastr/toastr.min.css',
+
                       './wwwroot/css/**/*.css'
                     ],
                 dest: "www/css/"

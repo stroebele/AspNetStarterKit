@@ -31,10 +31,8 @@ namespace StarterKit.Auth
             }
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim(ClaimTypes.Role, "Trucker"));
-            identity.AddClaim(new Claim("role", "user"));
-
+            identity.AddClaim(new Claim(ClaimTypes.Role, "Role"));
+            identity.AddClaim(new Claim(ClaimTypes.Name,  context.UserName));
             context.Validated(identity);
             
         }

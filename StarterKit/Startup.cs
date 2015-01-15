@@ -26,12 +26,6 @@ namespace StarterKit
             app.UseWebApi(config);
             app.UseStaticFiles();
 
-
-            //app.UseFileServer(new FileServerOptions()
-            //{
-            //    RequestPath = PathString.Empty,
-            //    FileSystem = new PhysicalFileSystem(@".\www"),
-            //});
         }
         
         public void ConfigureOAuth(IAppBuilder app)
@@ -40,7 +34,7 @@ namespace StarterKit
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(365),
                 Provider = new SimpleAuthorizationServerProvider()
             };
 

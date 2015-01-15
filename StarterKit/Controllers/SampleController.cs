@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Security.Claims;
 
 namespace StarterKit.Controllers
 {
@@ -19,8 +20,9 @@ namespace StarterKit.Controllers
             _logger = logger;
             
         }
-        [AllowAnonymous]
-        public IHttpActionResult Get()
+        //[Authorize]
+       [Authorize(Roles="Trucker")]
+         public IHttpActionResult Get()
         {
             _logger.Debug("Hello world");
             return Ok(_sampleObj.GetData());

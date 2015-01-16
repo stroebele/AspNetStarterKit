@@ -17,7 +17,8 @@
             login: login,
             logOut: logOut,
             fillAuthData: fillAuthData,
-            authentication: authentication
+            authentication: authentication,
+            refreshToken: refreshToken
         };
 
         function init() {
@@ -39,13 +40,13 @@
 
         function login(loginData) {
 
-            var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
+            var data = "client_id=html&grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
 
             var deferred = $q.defer();
 
             $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
 
-                localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
+                localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: response.refresh_token});
 
                 authentication.isAuth = true;
                 authentication.userName = loginData.userName;
@@ -79,6 +80,36 @@
             }
 
         }
+
+
+        function refreshToken(){
+            var deferred = $q.defer();
+
+            var authData = localStorageService.get('authorizationData');
+
+            if (authData) {
+
+                //Time since last refresh
+
+
+                var data = "grant_type=refresh_token&refresh_token=" + authData.refreshToken + "&client_id=html";
+
+                localStorageService.remove('authorizationData');
+
+                $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+                    localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refreshToken: response.refresh_token});
+                    deferred.resolve(response);
+
+                }).error(function (err, status) {
+                    logOut();
+                    deferred.reject(err);
+                });
+            } else {
+                deferred.reject();
+            }
+
+            return deferred.promise;
+        };
 
 
 

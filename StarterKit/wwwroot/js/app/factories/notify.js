@@ -3,10 +3,11 @@
 
     angular
         .module('app')
-        .factory('notify', notify);
+        .factory('notify', notify); 
 
+    notify.$inject = ['config'];
 
-    function notify() {
+    function notify(config) {
 
         init();
 
@@ -27,6 +28,15 @@
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             }
+        }
+
+        if (config.debug)
+        {
+            toastr.debug = toastr.info;
+        }
+        else
+        {
+            toastr.debug = function () { };
         }
 
         return window.toastr;

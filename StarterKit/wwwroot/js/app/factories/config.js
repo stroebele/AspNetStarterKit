@@ -9,7 +9,8 @@
     function config() {
         var baseUrl = 'http://localhost:3000/';
         var service = {
-            baseUrl: baseUrl
+            baseUrl: baseUrl,
+            debug: true
         };
         return service;
     }

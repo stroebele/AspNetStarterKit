@@ -171,6 +171,7 @@
     <Content Include="wwwroot\js\app\factories\authInterceptor.js" />
     <Content Include="wwwroot\js\app\factories\authService.js" />
     <Content Include="wwwroot\js\app\factories\config.js" />
+    <Content Include="wwwroot\js\app\factories\moment.js" />
     <Content Include="wwwroot\js\app\factories\notify.js" />
     <Content Include="wwwroot\js\app\factories\sampleService.js" />
     <Content Include="wwwroot\js\app\route.js" />

@@ -38,18 +38,38 @@ module.exports = function (grunt) {
                     ignoreErrors: true,
                 }
             },
-            getToken: {
+            getTokenViaPassword: {
                 options: {
                     url: host + 'token',
                     callback: function (err, response, body) {
-                        console.log(body);
+                        var obj = JSON.parse(body);
+                        var pretty = JSON.stringify(obj, null, 4)
+                        console.log(pretty);
                     },
                     form:
                     {
                         "userName": "joshua",
                         "password": "password",
                         "grant_type": "password",
-                        "client_id": "gruntJS",
+                        "client_id": "html",
+                    },
+                    method: "POST",
+                    ignoreErrors: true,
+                }
+            },
+            getTokenViaRefreshToken: {
+                options: {
+                    url: host + 'token',
+                    callback: function (err, response, body) {
+                        var obj = JSON.parse(body);
+                        var pretty = JSON.stringify(obj, null, 4)
+                        console.log(pretty);
+                    },
+                    form:
+                    {
+                        "refresh_token": "7c2f65b76bfe41cf861bbeee7c6fcad7",
+                        "grant_type": "refresh_token",
+                        "client_id": "html",
                     },
                     method: "POST",
                     ignoreErrors: true,

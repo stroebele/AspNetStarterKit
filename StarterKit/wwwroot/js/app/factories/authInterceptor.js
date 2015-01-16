@@ -5,9 +5,9 @@
         .module('app')
         .factory('authInterceptor', authInterceptor);
 
-    authInterceptor.$inject = ['$q', '$location', 'localStorageService', 'notify'];
+    authInterceptor.$inject = ['$q', '$location', 'localStorageService', 'notify', '$injector'];
 
-    function authInterceptor($q, $location, localStorageService, notify) {
+    function authInterceptor($q, $location, localStorageService, notify, $injector) {
         var service = {
             request: request,
             responseError: responseError
@@ -28,11 +28,32 @@
         }
 
         function responseError(rejection) {
+            var deferred = $q.defer();
+
             if (rejection.status === 401) {
-                notify.error("Access Denied", "To gain access to the requested resource login as a diffrent user")
-                $location.path('/login');
+                notify.debug("Trying to refresh");
+                var authService = $injector.get('authService');
+                authService.refreshToken().then(function (response) {
+                    retryHttpRequest(rejection.config, deferred);
+                }, function () {
+                    notify.error("Access Denied", "To gain access to the requested resource login")
+                    authService.logOut();
+                    $location.path('/login');
+                    deferred.reject(rejection);
+                });
+            } else {
+                deferred.reject(rejection);
             }
-            return $q.reject(rejection);
+            return deferred.promise;
+        }
+
+        function retryHttpRequest(config, deferred) {
+            var myHttp = $injector.get('$http');
+            myHttp(config).then(function (response) {
+                deferred.resolve(response);
+            }, function (response) {
+                deferred.reject(response);
+            });
         }
     }
 })();

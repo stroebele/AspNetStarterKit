@@ -21,7 +21,7 @@ namespace StarterKit.Controllers
             
         }
         //[Authorize]
-       [Authorize(Roles="Role")]
+       [Authorize(Roles="SampleUserRole")]
          public IHttpActionResult Get()
         {
             _logger.Debug("Hello world");

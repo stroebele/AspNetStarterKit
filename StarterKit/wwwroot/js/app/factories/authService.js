@@ -88,16 +88,16 @@
             var authData = localStorageService.get('authorizationData');
 
             if (authData) {
-
-                //Time since last refresh
-
-
                 var data = "grant_type=refresh_token&refresh_token=" + authData.refreshToken + "&client_id=html";
 
                 localStorageService.remove('authorizationData');
 
                 $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
-                    localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refreshToken: response.refresh_token});
+                    //localStorageService.set('lastRefresh', new Date.getTime());
+                    localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refreshToken: response.refresh_token });
+
+                    authentication.isAuth = true;
+                    authentication.userName = response.userName;
                     deferred.resolve(response);
 
                 }).error(function (err, status) {
@@ -110,6 +110,8 @@
 
             return deferred.promise;
         };
+
+      
 
 
 

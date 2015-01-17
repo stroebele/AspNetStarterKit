@@ -122,7 +122,7 @@ namespace StarterKit.Auth
                 identity.RemoveClaim(r);
             }
             //do something to query user from identityName
-            if(DateTime.Now.Second < 31)
+            if(DateTime.Now.Second < 51)
             { 
                 identity.AddClaim(new Claim(ClaimTypes.Role, "SampleUserRole"));
             }

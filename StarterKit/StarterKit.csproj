@@ -161,30 +161,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Gruntfile.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="wwwroot\css\site.css" />
-    <Content Include="wwwroot\index.html" />
-    <Content Include="wwwroot\js\app\app.js" />
-    <Content Include="wwwroot\js\app\factories\authInterceptor.js" />
-    <Content Include="wwwroot\js\app\factories\authService.js" />
-    <Content Include="wwwroot\js\app\factories\config.js" />
-    <Content Include="wwwroot\js\app\factories\moment.js" />
-    <Content Include="wwwroot\js\app\factories\notify.js" />
-    <Content Include="wwwroot\js\app\factories\sampleService.js" />
-    <Content Include="wwwroot\js\app\route.js" />
-    <Content Include="wwwroot\templates\header\header.html" />
-    <Content Include="wwwroot\templates\header\header.js" />
-    <Content Include="wwwroot\templates\home\home.html" />
-    <Content Include="wwwroot\templates\home\home.js" />
-    <Content Include="wwwroot\templates\login\login.html" />
-    <Content Include="wwwroot\templates\login\login.js" />
-    <Content Include="wwwroot\templates\sample\sample.html" />
-    <Content Include="wwwroot\templates\sample\sample.js" />
-    <Content Include="wwwroot\templates\signup\signup.html" />
-    <Content Include="wwwroot\templates\signup\signup.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectConfig.cs" />
@@ -206,7 +185,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="wwwroot\bower.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

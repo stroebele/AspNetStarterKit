@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity;
 using StarterKit.Auth;
 using Ninject.Extensions.Logging;
 
-namespace StarterKit.Controllers
+namespace StarterKit.Api.Controllers
 {
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController

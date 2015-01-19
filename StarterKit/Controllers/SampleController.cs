@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Security.Claims;
 
-namespace StarterKit.Controllers
+namespace StarterKit.Api.Controllers
 {
     [RoutePrefix("api/Sample")]
     public class SampleController : ApiController

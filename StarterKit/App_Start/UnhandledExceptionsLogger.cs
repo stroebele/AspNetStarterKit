@@ -7,7 +7,7 @@ using NLog;
 using Newtonsoft.Json;
 using System.Text;
 
-namespace StarterKit.App_Start
+namespace StarterKit.Api.App_Start
 {
     public class UnhandledExceptionsLogger : ExceptionFilterAttribute
     {

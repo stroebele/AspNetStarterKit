@@ -4,7 +4,7 @@ using System.Net.Http.Formatting;
 using System.Web.Http;
 using Newtonsoft.Json.Serialization;
 
-namespace StarterKit
+namespace StarterKit.Api
 {
     public static class WebApiConfig
     {

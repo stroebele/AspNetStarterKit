@@ -5,9 +5,9 @@ using Ninject;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
 using System.Web.Http;
-using StarterKit.Controllers;
+using StarterKit.Api.Controllers;
 
-namespace StarterKit
+namespace StarterKit.Api
 {
     public class NinjectConfig
     {

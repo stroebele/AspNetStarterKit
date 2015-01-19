@@ -36,6 +36,7 @@
                 authService.refreshToken().then(function (response) {
                     if (rejection.config.isRetry === true) {
                         notify.error("Access Denied", "To gain access to the requested resource login")
+                        $location.path('/home');
                         deferred.reject(response);
                     }
                     else {

@@ -7,11 +7,11 @@ using Owin;
 using StarterKit.Auth;
 using Ninject;
 using System.Reflection;
-using StarterKit.App_Start;
+using StarterKit.Api.App_Start;
 using Microsoft.Owin.StaticFiles;
 using Microsoft.Owin.FileSystems;
 
-namespace StarterKit
+namespace StarterKit.Api
 {
     public class Startup
     {

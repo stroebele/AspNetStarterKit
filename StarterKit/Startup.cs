@@ -4,12 +4,15 @@ using System.Web.Http;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using StarterKit.Auth;
 using Ninject;
 using System.Reflection;
 using StarterKit.Api.App_Start;
 using Microsoft.Owin.StaticFiles;
 using Microsoft.Owin.FileSystems;
+using Thinktecture.IdentityServer.AccessTokenValidation;
+using Tsl.AuthorizationManager;
+using System.Collections.Generic;
+using Tsl.ConfigReader;
 
 namespace StarterKit.Api
 {
@@ -30,20 +33,60 @@ namespace StarterKit.Api
         
         public void ConfigureOAuth(IAppBuilder app)
         {
-            OAuthAuthorizationServerOptions oAuthServerOptions = new OAuthAuthorizationServerOptions()
+            app.UseResourceAuthorization(new AuthorizationManager(new MyResourceClaimRepo(),null));
+            var config = new ConfigFileSectionReader("dataProviders");
+
+            app.UseIdentityServerBearerTokenAuthentication(
+            new IdentityServerBearerTokenAuthenticationOptions
             {
-                AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(.1),
-                Provider = new SimpleAuthorizationServerProvider(),
-                RefreshTokenProvider = new SimpleRefreshTokenProvider()
+                Authority = config.GetItem("Authority"),
+                RequiredScopes = new[] { config.GetItem("RequiredScopes") }
+            });
+        }
+    }
+
+
+    public class MyResourceClaimRepo : IResourceClaimRepo
+    {
+        public IEnumerable<AuthorizationData.ClaimData> GetClaims(string resourceName, string actionName)
+        {
+            var adminClaims = new AuthorizationData.ClaimData[]
+                    {
+                        new AuthorizationData.ClaimData("company", "TSL"),
+                        //new AuthorizationData.ClaimData("role", "TestRole")
+                    };
+
+
+            var allResourceClaims = new AuthorizationData[]
+            {
+                new AuthorizationData()
+                {
+                    ResourceName = "UserInfoLock",
+                    ActionName = "Write",
+                    AllowedClaims = adminClaims
+                },
+                new AuthorizationData()
+                {
+                    ResourceName = "SteamshipEmail",
+                    ActionName = "Read",
+                    AllowedClaims = adminClaims
+                },
+                new AuthorizationData()
+                {
+                    ResourceName = "BookingQueue",
+                    ActionName = "Read",
+                    AllowedClaims = adminClaims
+                },
+                new AuthorizationData()
+                {
+                    ResourceName = "RequestStatus",
+                    ActionName = "Write",
+                    AllowedClaims = adminClaims
+                }
             };
 
-            // Token Generation
-            app.UseOAuthAuthorizationServer(oAuthServerOptions);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-           
-
+            var allowedClaims = allResourceClaims.Where(x => x.ResourceName == resourceName && x.ActionName == actionName).SelectMany(x => x.AllowedClaims);
+            return allowedClaims;
         }
     }
 }
